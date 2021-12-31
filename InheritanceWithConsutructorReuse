@@ -1,0 +1,79 @@
+using System;
+
+namespace Inheritance
+{
+    class StartUp
+    {
+        static void Main(string[] args)
+        {
+            var person = new Person();
+
+           
+
+            var student = new Student();
+
+            var employee = new Employee();
+
+
+            person.Sleep();
+
+            student.Sleep();
+
+            employee.Sleep();
+
+
+        }
+
+
+    }
+
+}
+namespace Inheritance
+{
+    class Person
+    {
+        public string Name { get; set; }  
+        
+        public int Age { get; set; }   
+        
+
+        public Person(string name)
+        {
+            Name = name;
+        }
+
+
+        public void Sleep()
+        {
+            Console.WriteLine($"I'm a {this.GetType().} and I'm Sleeping");
+        }
+    }
+}
+namespace Inheritance
+{
+    internal class Student : Person
+    {
+        public string School { get; set; }
+
+        public Student(string name)
+            : base (name)
+        {
+
+        }
+
+    }
+}
+
+namespace Inheritance
+{
+    internal class Employee : Person
+    {
+        public string Company { get; set; }
+    }
+}
+
+
+
+
+
+
