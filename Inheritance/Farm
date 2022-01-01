@@ -1,0 +1,100 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Fauna
+
+{
+    public class StatUp
+    { 
+        public static void Main(string[] args)
+        {
+           Dog dog = new Dog();
+
+            dog.Eat();
+
+            dog.Bark();
+
+            Puppy puppy = new Puppy(); 
+            puppy.Eat();
+            puppy.Bark();
+            puppy.Weep();   
+
+
+            Cat cat = new Cat();
+            cat.Eat();
+            cat.Meow();
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fauna
+{
+    public class Animal
+    {
+        public void Eat()
+        {
+            Console.WriteLine("I'm eating");
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fauna
+{
+     public class Dog : Animal
+    {
+        public void Bark()
+        {
+            Console.WriteLine("Bau Bau");
+        }
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fauna
+{
+    public class Puppy : Dog
+    {
+        public void Weep()
+        {
+            Console.WriteLine("skim, skim");
+        }
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fauna
+{
+    public class Cat : Animal
+    {
+
+        public void Meow()
+        {
+            Console.WriteLine("Meow, Meow");
+        }
+    }
+}
+
