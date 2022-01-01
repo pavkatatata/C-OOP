@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Fauna
+
+{
+    public class StatUp
+    { 
+        public static void Main(string[] args)
+        {
+           Dog dog = new Dog();
+
+            dog.Eat();
+
+            dog.Bark();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fauna
+{
+    internal class Animal
+    {
+        public void Eat()
+        {
+            Console.WriteLine("I'm eating");
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fauna
+{
+    internal class Dog : Animal
+    {
+        public void Bark()
+        {
+            Console.WriteLine("Bau Bau");
+        }
+
+    }
+}
