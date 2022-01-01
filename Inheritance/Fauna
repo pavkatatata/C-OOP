@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 
 namespace Fauna
 {
-    internal class Animal
+    public class Animal
     {
         public void Eat()
         {
@@ -43,7 +43,7 @@ using System.Threading.Tasks;
 
 namespace Fauna
 {
-    internal class Dog : Animal
+    public class Dog : Animal
     {
         public void Bark()
         {
