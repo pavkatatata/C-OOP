@@ -1,0 +1,104 @@
+
+namespace Person
+{
+    using System;
+    using System.Collections.Generic;
+    public class StartUp
+    {
+        public static void Main(string[] args)
+        {
+            string name = Console.ReadLine();
+            int age = int.Parse(Console.ReadLine());
+
+            Child child = new Child(name, age);
+            Console.WriteLine(child);
+
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Person
+{
+    public class Person
+    {
+
+        private int age;
+
+        public Person(string name, int age)
+        {
+            this.Age = age;
+            this.Name = name;
+
+        }
+        public string Name { get; set; }
+
+        public virtual int Age
+        {
+            get
+            {
+                return this.age;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    Console.WriteLine("Age cannot be negative.");
+                }
+                this.age = value;
+            }
+
+        }
+        public override string ToString()
+        {
+            return $"Name: {this.Name}, Age: {this.Age}";
+        }
+
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Person
+{
+
+    using System;
+    using System.Collections.Generic;
+    public class Child : Person
+    {
+        public Child(string name, int age) :
+            base(name, age)
+        {
+        }
+
+        public override int Age
+        { 
+            get 
+            {
+                return base.Age; 
+            }
+            set 
+            {
+                if (value > 15)
+                {
+                    throw new ArgumentException("Age connot be greater than 15");
+                }
+                base.Age = value;
+            }
+        }
+
+
+    }
+}
+
