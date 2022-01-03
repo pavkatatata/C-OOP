@@ -1,0 +1,181 @@
+namespace Players_and_monsters
+{
+    using Players_and_Monsters;
+    using System;
+    using System.Collections.Generic;
+    public class StartUp
+    {
+        public static void Main(string[] args)
+        {
+
+            MuseElf elf = new MuseElf("Elf", 999999);
+            Console.WriteLine(elf);
+
+
+        }
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class Hero
+    {
+        public string Username { get; set; }
+        public int Level { get; set; }
+
+        public Hero(string username, int leval)
+        {
+            this.Username = username;
+            this.Level = leval;
+
+        }
+
+
+        public override string ToString()
+        {
+            return $"Type: {this.GetType().Name} Username: {this.Username} Level: {this.Level}";
+        }
+
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class Elf : Hero
+    {
+        public Elf(string username, int leval) : base(username, leval)
+        {
+            
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class MuseElf : Elf
+    {
+        public MuseElf(string username, int leval) : base(username, leval)
+        {
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class Wizard : Hero
+    {
+        public Wizard(string username, int leval) : base(username, leval)
+        {
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class DarkWizard : Wizard
+    {
+        public DarkWizard(string username, int leval) : base(username, leval)
+        {
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class SoulMaster : DarkWizard
+    {
+        public SoulMaster(string username, int leval) : base(username, leval)
+        {
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class Knight : Hero
+    {
+        public Knight(string username, int leval) : base(username, leval)
+        {
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class DarkKnight : Knight
+    {
+        public DarkKnight(string username, int leval) : base(username, leval)
+        {
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Players_and_Monsters
+{
+    public class BladeKnight : DarkKnight
+    {
+        public BladeKnight(string username, int leval) : base(username, leval)
+        {
+        }
+    }
+}
+
+
+
+
+
