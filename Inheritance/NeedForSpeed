@@ -1,0 +1,167 @@
+namespace NeedForSpeed
+{
+    public class StartUp
+    {
+
+        public static void Main(string[] args)
+        {
+            Vehicle motor = new Car(100, 200);
+
+            motor.Drive(2);
+
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NeedForSpeed
+{
+    public class Vehicle
+    {
+
+        private const double DefaultFuelConsumption = 1.25;
+
+        public int HorsePower { get; set; }
+        public double Fuel { get; set; }
+        public virtual double FuelConsumption => DefaultFuelConsumption;
+
+        public Vehicle(int horsePower, double fuel)
+        {
+            HorsePower = horsePower;
+            Fuel = fuel;
+
+        }
+        public virtual void Drive(double kilometers)
+        {
+            this.Fuel -= kilometers * this.FuelConsumption;
+            Console.WriteLine($"Km driven ---> {kilometers}");
+            Console.WriteLine($"The FuelConsumaption will be ----> {this.FuelConsumption}");
+            Console.WriteLine($"The left Fuel will be----> {Fuel}");
+
+        }
+
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NeedForSpeed
+{
+    public class Car : Vehicle
+    {
+        private const double DefaultFuelConsumption = 3;
+        public Car(int horsePower, double fuel) : base(horsePower, fuel)
+        {
+        }
+
+        public override double FuelConsumption => DefaultFuelConsumption;
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NeedForSpeed
+{
+    public class FamilyCar : Car
+    {
+
+        public FamilyCar(int horsePower, double fuel)
+            : base(horsePower, fuel)
+        {
+        }
+
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NeedForSpeed
+{
+    public class SportCar : Car
+    {
+
+        private const double DefaultFuelConsumption = 10;
+        public SportCar(int horsePower, double fuel) 
+            : base(horsePower, fuel)
+        {
+        }
+
+        public override double FuelConsumption => DefaultFuelConsumption;
+
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NeedForSpeed
+{
+    public class Motorcycle : Vehicle
+    {
+        public Motorcycle(int horsePower, double fuel) : base(horsePower, fuel)
+        {
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NeedForSpeed
+{
+    public class RaceMotorcycle : Motorcycle
+    {
+
+        private const double DefaultFuelConsumption = 8;
+        public RaceMotorcycle(int horsePower, double fuel) : base(horsePower, fuel)
+        {
+        }
+
+        public override double FuelConsumption => DefaultFuelConsumption;
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NeedForSpeed
+{
+    public class CrossMotorcycle : Motorcycle
+    {
+        public CrossMotorcycle(int horsePower, double fuel) : base(horsePower, fuel)
+        {
+        }
+    }
+}
+
+
