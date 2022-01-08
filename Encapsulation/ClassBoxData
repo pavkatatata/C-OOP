@@ -1,60 +1,74 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
 
-namespace ClassBoxData
+namespace EncapsExe
 {
-    internal class Program
+    class StartUp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            double lenght = double.Parse(Console.ReadLine());
+            double width = double.Parse(Console.ReadLine());
+            double height = double.Parse(Console.ReadLine());
+
+            var box = new Box(lenght, width, height);
+
+            var surfaceArea = box.SurfaceArea(lenght, width, height);
+            var lateralSurfaceArea = box.LateralSurfaceArea(lenght, width, height);
+            var volume = box.Volume(lenght, width, height);
+
+            Console.WriteLine($"Surface Area - {surfaceArea:F2}");
+            Console.WriteLine($"Lateral Surface Area - {lateralSurfaceArea:F2}");
+            Console.WriteLine($"Volume - {volume:F2}");
         }
     }
 }
-
-
 
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ClassBoxData
+
+public class Box
 {
-    public class Box
+    private double Lenght { get; set; }
+
+    private double Width { get; set; }
+
+    private double Height { get; set; }
+
+    public Box(double lenght, double width, double height)
     {
-        private double length;
-        private double width;
-        private double height;
+        Lenght = lenght;
+        Width = width;
+        Height = height;
+    }
 
+    public double SurfaceArea(double lenght, double width, double height)
+    {
+        var calculateSurfaceArea
+            = (2 * lenght * width)
+            + (2 * lenght * height)
+            + (2 * width * height);
+        return calculateSurfaceArea;
+    }
 
-        public Box(double length, double width, double height)
-        {
-            this.Height = height;
-            this.Width = width;
-            this.Length = length;   
+    public double LateralSurfaceArea(double lenght, double width, double height)
+    {
+        var calculateLateralArea
+            = (2 * lenght * height)
+            + (2 * width * height);
+        return calculateLateralArea;
+    }
 
-        }
-
-        public double Length
-        {
-            get { return this.length; }
-           private set { this.length = value; }
-        }
-
-        public double Width
-        {
-            get { return this.length; }
-           private set { this.length = value; }
-        }
-        public double Height
-        {
-            get { return this.length; }
-           private set { this.length = value; }
-        }
-
-
-
+    public double Volume(double lenght, double width, double height)
+    {
+        var calculateVolume
+            = lenght * width * height;
+        return calculateVolume;
     }
 }
+
