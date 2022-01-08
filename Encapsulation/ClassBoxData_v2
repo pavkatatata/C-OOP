@@ -1,0 +1,118 @@
+using System;
+
+namespace ClassBoxData
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            double width = double.Parse(Console.ReadLine());
+            double height = double.Parse(Console.ReadLine());
+            double length = double.Parse(Console.ReadLine());
+
+            try
+            {
+                Box box = new Box(length, width, height);
+
+                Console.WriteLine(box.CalculateSurfaceArea());
+                Console.WriteLine(box.CalculateLateral());
+                Console.WriteLine(box.CalculateVolume());
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                throw;
+
+            }
+
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ClassBoxData
+{
+    public class Box
+    {
+        private double length;
+        private double width;
+        private double height;
+
+
+        public Box(double length, double width, double height)
+        {
+            this.Height = height;
+            this.Width = width;
+            this.Length = length;
+
+        }
+
+        public double Length
+        {
+            get => this.length;
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Length cannot be zero or negative");
+                }
+                this.length = value;
+            }
+        }
+
+        public double Width
+        {
+            get => this.width;
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException(" Width cannot be zero or negative");
+                }
+                this.width = value;
+            }
+        }
+        public double Height
+        {
+            get => this.height;
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Height cannot be zero or negative");
+                }
+                this.height = value;
+            }
+        }
+
+
+        public string CalculateVolume()
+        {
+          
+            double result = this.Length * this.Width * this.Height;
+            return $"Volume - {result:F2}";
+        }
+
+        public string CalculateLateral()
+        {
+           
+            double result =  (2 * (this.Length * this.Height)) + (2 * (this.Width * this.Height));
+           return $"Latera Surface Area - {result:F2}";
+        }
+
+        public string CalculateSurfaceArea()
+        {
+            double result = (2 * this.Length  * this.Width) + (2 * this.Length * this.Height) + (2 * this.Width * this.Height);
+            return $"Surface Area - {result:F2}";
+
+        }
+
+
+    }
+}
