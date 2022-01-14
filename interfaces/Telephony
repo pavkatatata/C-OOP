@@ -1,0 +1,198 @@
+using System;
+using Telephony.Models;
+using Telephony.Exceptions;
+
+
+public class StartUp
+{
+
+    public static void Main(string[] args)
+    {
+        string[] phoneNumbers = Console.ReadLine()
+            .Split()
+            .ToArray();
+
+        string[] urls = Console.ReadLine()
+            .Split()
+            .ToArray();
+
+        Smartphone smartphone = new Smartphone();
+        StationaryPhone stationaryphone = new StationaryPhone();
+
+
+        for (int i = 0; i < phoneNumbers.Length; i++)
+        {
+            string phoneNumber = phoneNumbers[i];
+            try
+            {
+
+                if (phoneNumber.Length == 7)
+                {
+                    Console.WriteLine(stationaryphone.Call(phoneNumber));
+                }
+                else if (phoneNumber.Length == 10)
+                {
+                    Console.WriteLine(smartphone.Call(phoneNumber));
+                }
+            }
+            catch (InvalidPhoneNumberException ex)    
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+
+        for (int i = 0; i < urls.Length; i++)
+        {
+
+            string url = urls[i];
+            try
+            {
+                Console.WriteLine(smartphone.Browse(url));
+            }
+            catch (IvalidURLException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+           
+
+           
+
+
+        }
+
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Telephony.Interfaces;
+using Telephony.Exceptions;
+
+
+namespace Telephony.Models
+{
+    
+
+    public class Smartphone : ICallable, IBrowsable
+    {
+        public string Browse(string url)
+        {
+            if (url.Any( x => char.IsDigit(x)))
+            {
+                throw new IvalidURLException();
+            }
+
+            return $"Browsin {url}!";
+        }
+
+        public string Call(string phoneNumber)
+        {
+            if (!phoneNumber.All(x => char.IsDigit(x)))
+            {
+                // throw exp
+            }
+            return $"Calling... {phoneNumber}";
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Telephony.Exceptions;
+using Telephony.Interfaces;
+
+namespace Telephony.Models
+{
+    public class StationaryPhone : ICallable
+    {
+        public string Call(string phoneNumber)
+        {
+
+            if (!phoneNumber.All(x => char.IsDigit(x)))
+            {
+                throw new IvalidURLException();
+            }
+            return $"Daling...{phoneNumber}";
+
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Telephony.Interfaces
+{
+    public interface IBrowsable
+    {
+        public string Browse(string url);
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Telephony.Interfaces
+{
+   public interface ICallable
+    {
+        public string Call(string phoneNumber);
+
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Telephony.Exceptions
+{
+    public class InvalidPhoneNumberException : Exception
+    {
+        private const string Invalid_numberL_exption_message = "Invalid number!";
+
+        public InvalidPhoneNumberException() : base(Invalid_numberL_exption_message)   
+        {
+            
+        }
+
+        
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Telephony.Exceptions
+{
+    public class IvalidURLException : Exception
+    {
+        private  const string InvalidURL_exption_message = "Invalid URL!";
+        public IvalidURLException():base(InvalidURL_exption_message)
+        {
+
+        }
+
+
+    }
+}
+
+
+
+
+
