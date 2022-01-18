@@ -1,0 +1,163 @@
+using System;
+
+namespace Vehicles
+{
+    using System.Linq;
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            string[] carTokens = Console.ReadLine()
+                .Split()
+                .ToArray();
+
+            string[] truckTokens = Console.ReadLine()
+               .Split()
+               .ToArray();
+
+            Vehicle car = new Car(double.Parse(carTokens[1]), double.Parse(carTokens[2]));
+            Vehicle truck = new Truck(double.Parse(truckTokens[1]), double.Parse(truckTokens[2]));
+
+            int numberOfCommands = int.Parse(Console.ReadLine());
+            for (int i = 0; i < numberOfCommands; i++)
+            {
+                string[] currentLine = Console.ReadLine().Split();
+                string command = currentLine[0];
+                string type = currentLine[1];
+                double amount = double.Parse(currentLine[2]);
+
+                if (command == "Drive")
+                {
+                    if (type is "Car")
+                    {
+                        CanDrive(car, amount);
+                    }
+                    else
+                    {
+                        CanDrive(truck, amount);
+                    }
+                }
+                else // Refuel 
+                {
+                    if (type is "Car")
+                    {
+                        car.Refuel(amount);
+                    }
+                    else
+                    {
+                        truck.Refuel(amount);
+                    }
+                }
+
+            }
+
+
+            Console.WriteLine($"Car: {car.FuelQuantity:F2}");
+            Console.WriteLine($"Truck: {truck.FuelQuantity:F2}");
+        }
+        public static void CanDrive(Vehicle vehicle, double distance)
+        {
+            bool canDrive = vehicle.CanDrive(distance);
+
+            string vehicleType = vehicle.GetType().Name;
+
+            string result = canDrive
+                ? $"{vehicleType} travelled {distance} km"
+                : $"{vehicleType} needs refueling";
+
+            Console.WriteLine(result);
+        }
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Vehicles
+{
+    public abstract class Vehicle
+    {
+        protected Vehicle(double fuelQuantity, double fuelCompsumption)
+        {
+            this.FuelQuantity = fuelQuantity;
+            this.FuelCompsumption = fuelCompsumption;
+        }
+
+        public double FuelQuantity { get; private set; }
+
+        public virtual double FuelCompsumption { get; }
+         
+        public virtual void Refuel(double amount)
+        {
+            this.FuelQuantity += amount;
+        }
+
+        public bool CanDrive(double distance)
+        {
+            bool canDrive = this.FuelQuantity - this.FuelCompsumption * distance >= 0;
+            if (!canDrive )
+            {
+                return false;
+            }
+
+            this.FuelQuantity -= this.FuelCompsumption * distance;
+            return true;
+        }
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Vehicles
+{
+    public class Car : Vehicle
+    {
+        private const double AirConditionerConsumption = 0.9;
+
+        public Car(double fuelQuantity, double fuelCompsumption) 
+            : base(fuelQuantity, fuelCompsumption)
+        {
+        }
+
+        public override double FuelCompsumption => base.FuelCompsumption + AirConditionerConsumption;
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Vehicles
+{
+    public class Truck : Vehicle
+    {
+        private  const  double AirConditionerConsumption = 1.6;
+        public Truck(double fuelQuantity, double fuelCompsumption)
+            : base(fuelQuantity, fuelCompsumption)
+        {
+
+        }
+
+        public override double FuelCompsumption => base.FuelCompsumption + AirConditionerConsumption;
+
+        public override void Refuel ( double amount)
+        {
+            base.Refuel(amount * 0.95);
+        }
+    }
+}
+
+
+
