@@ -1,0 +1,192 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Linq;
+
+
+ namespace BaseHero
+{
+    public class Program
+    {
+      public static void Main(string[] args)
+        {
+            List<Hero> heroes = new List<Hero>();
+            int numberOfheroes = int.Parse(Console.ReadLine());
+            for (int i = 0; i < numberOfheroes; i++)
+            {
+                try
+                {
+                    string name = Console.ReadLine();
+                    string heroType = Console.ReadLine();
+
+                    if (heroType == "Paladin")
+                    {
+                        heroes.Add(new Paladin(name));
+                    }
+                    else if (heroType == "Druid")
+                    {
+                        heroes.Add(new Druid(name));
+                    }
+                    else if (heroType == "Warrior")
+                    {
+                        heroes.Add(new Warrior(name));
+                    }
+                    else if (heroType == "Rogue")
+                    {
+                        heroes.Add(new Rogue(name));
+                    }
+                    else
+                    {
+                        throw new ArgumentException();
+                    }
+                }
+                catch (ArgumentException ex)
+                {
+
+                    Console.WriteLine(ex.Message);
+                }
+               
+
+            }
+
+            int bossPower = int.Parse(Console.ReadLine());
+
+            foreach (var hero in heroes)
+            {
+                Console.WriteLine(hero.CastAbility());
+            }
+
+            int heroesPower = heroes.Sum(x => x.Power);
+
+            if (heroesPower >= bossPower)
+            {
+                Console.WriteLine("Victory!");
+            }
+            else
+            {
+                Console.WriteLine("Defeat...");
+            }
+
+        }
+
+    }
+
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BaseHero
+{
+    public abstract class Hero
+    {
+
+        public Hero(string name, int power)
+        {
+            this.Power = power;
+            this.Name = name;
+        }
+
+        public string Name { get;  }
+
+        public int Power { get;  }
+
+        public abstract string CastAbility();
+       
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BaseHero
+{
+    public class Druid : Hero
+    {
+        private const int power = 80;
+        public Druid(string name ) : base(name, power)
+        {
+        }
+
+        public override string CastAbility()
+        {
+            return $"{this.GetType().Name} – {this.Name} healed for {this.Power}";
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BaseHero
+{
+    public class Paladin : Hero
+    {
+        private const int power = 100;
+        public Paladin(string name) : base(name, power)
+        {
+        }
+
+        public override string CastAbility()
+        {
+            return $"{this.GetType().Name} – {this.Name} healed for {this.Power}";
+        }
+    }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BaseHero
+{
+    public class Rogue : Hero
+    {
+
+        private const int power = 80;
+        public Rogue(string name) : base(name, power)
+        {
+        }
+
+        public override string CastAbility()
+        {
+            return $"{this.GetType().Name} – {this.Name} hit for {this.Power} damage";
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BaseHero
+{
+    public class Warrior : Hero
+    {
+
+        private const int power = 100;
+        public Warrior(string name) : base(name, power)
+        {
+        }
+
+        public override string CastAbility()
+        {
+            return $"{this.GetType().Name} – {this.Name} hit for {this.Power} damage";
+        }
+    }
+}
