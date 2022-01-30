@@ -1,0 +1,22 @@
+// BEFORE
+interface IReport
+{
+    void AddEntryAt(int index);
+    void RemovEntryAt(int index);
+    void SavetToFile(string directoryPath, string fileName);
+
+}
+
+// After 
+
+interface IReport
+{
+    void AddEntryAt(int index);
+    void RemovEntryAt(int index);
+
+}
+
+interface IReportSaver
+{
+    void SaveToFile(string directoryPath, string fileName);
+}
