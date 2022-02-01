@@ -1,0 +1,113 @@
+namespace BurgerMaker
+{
+    using System;
+     class Program
+    {
+        static void Main()
+        {
+          
+
+            var burgerMaker = new DobuleBurger();
+
+            burgerMaker.MakeBurgerMenu();
+
+            Console.WriteLine();
+
+        }
+    }
+
+
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BurgerMaker
+{
+    public abstract class BurgerMaker
+    {
+        public void MakeBurgerMenu()
+        {
+            PrepareMeat();
+            AddIngridients();
+            AddSideDish();
+            AddDrink();
+        }
+
+        protected abstract void PrepareMeat();
+
+        protected abstract void AddIngridients();
+
+        protected abstract void AddSideDish();
+
+        protected abstract void AddDrink();
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BurgerMaker
+{
+    using System;
+    public class VeganBurgerMaker : BurgerMaker
+    {
+        protected override void AddDrink()
+        {
+            Console.WriteLine("Clean meat");
+        }
+
+        protected override void AddIngridients()
+        {
+            Console.WriteLine("Cocumber, potatos");
+        }
+
+        protected override void AddSideDish()
+        {
+            Console.WriteLine("Tomatos");
+        }
+
+        protected override void PrepareMeat()
+        {
+            Console.WriteLine("Pleskavica");
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BurgerMaker
+{
+    public class DobuleBurger : BurgerMaker
+    {
+        protected override void AddDrink()
+        {
+            Console.WriteLine("Doble cola");
+        }
+
+        protected override void AddIngridients()
+        {
+            Console.WriteLine("Doblle Fattt");
+        }
+
+        protected override void AddSideDish()
+        {
+            Console.WriteLine("Double patetos");
+        }
+
+        protected override void PrepareMeat()
+        {
+            Console.WriteLine("Double Pleskavica");
+        }
+    }
+}
