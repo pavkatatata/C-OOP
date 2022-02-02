@@ -7,7 +7,6 @@ namespace BurgerMaker
         static void Main()
         {
 
-
             var burgerMaker = new DobuleBurger();
 
             burgerMaker.MakeBurgerMenu();
